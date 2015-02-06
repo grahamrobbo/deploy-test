@@ -1,0 +1,5 @@
+SAPUI5ApplicationName=ZGITTEST
+SAPUI5ApplicationPackage=YELCHO_GITHUB
+SAPUI5ApplicationDescription=Test App for Github Deploy
+AcceptUnixStyleEol=True
+DeltaMode=True

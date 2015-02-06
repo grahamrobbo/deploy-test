@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+
+    <title>Single Page XML View</title>
+
+    <script id="sap-ui-bootstrap" type="text/javascript" src="https://sapui5.ap1.hana.ondemand.com/resources/sap-ui-cachebuster/sap-ui-core.js" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.m" data-sap-ui-xx-bindingSyntax="complex">
+    </script>
+
+    <!-- XML-based view definition -->
+    <script id="view1" type="sapui5/xmlview">
+        <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+            <App>
+                <Page title="My View">
+                    <IconTabBar>
+                        <items>
+                            <IconTabFilter text="Employees" icon="sap-icon://group">
+                                <content>
+                                    <List noDataText="No data" items="{/Employees}">
+                                        <items>
+                                            <StandardListItem counter="0" title="{FirstName}" description="{Title}" info="{HomePhone}"></StandardListItem>
+                                        </items>
+                                    </List>
+                                </content>
+                            </IconTabFilter>
+                            <IconTabFilter text="Products" icon="sap-icon://product">
+                                <content>
+                                    <List noDataText="No data" items="{/Products}">
+                                        <items>
+                                            <DisplayListItem counter="0" label="{ProductName}" value="{UnitsInStock}"></DisplayListItem>
+                                        </items>
+                                    </List>
+                                </content>
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
+                </Page>
+            </App>
+        </mvc:View>
+    </script>
+    <script>
+    // Instantiate the View, assign a model
+    // and display
+    var oView = sap.ui.xmlview({
+        viewContent: jQuery('#view1').html()
+    });
+
+    oView.setModel( sap.ui.model.odata.ODataModel("http://services.odata.org/Northwind/Northwind.svc/",true));
+
+    oView.placeAt('content');
+    </script>
+
+</head>
+
+<body class="sapUiBody" role="application">
+    <div id="content"></div>
+</body>
+
+</html>
